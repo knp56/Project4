@@ -1,0 +1,35 @@
+flaskApp->temps->edit.html
+
+{% extends "layout.html" %}
+{% block content %}
+<form action="/edit/{{addresses.id}}" method="post">
+    <div class="row">
+        <div class="col">
+            <label for="fName">First Name</label>
+            <input id="fName" type="text" class="form-control" placeholder="First Name" name="fName" value="{{addresses.fName}}">
+        </div>
+        <div class="col">
+            <label for="lName">Last Name</label>
+            <input id="lName" type="text" class="form-control" placeholder="Last Name" name="lName" value="{{addresses.lName}}">
+        </div>
+        <div class="col">
+            <label for="Address">Address</label>
+            <input id="Address" type="text" class="form-control" placeholder="Address" name="Address" value="{{addresses.Address}}">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="State">State</label>
+            <input id="State" type="text" class="form-control" placeholder="State" name="State" value="{{addresses.State}}">
+        </div>
+        <div class="col">
+            <label for="Zip">Zip Code</label>
+            <input id="Zip" type="text" class="form-control" placeholder="Zip" name="Zip" value="{{addresses.Zip}}">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+
+</form>
+{% endblock %}

@@ -1,0 +1,64 @@
+flaskApp->temps->new.html
+
+{% extends "layout.html" %}
+{% block content %}
+
+<form action="/address/new" method="POST">
+    <div class="row">
+        <div class="col">
+            {{ formObject.fName.label(
+        class="form-label") }}
+
+        {{ formObject.fName(
+        class="form-control") }}
+        </div>
+        <div class="col">
+            {{ formObject.lName.label(
+        class="form-label") }}
+
+        {{ formObject.lName(
+        class="form-control") }}
+        </div>
+        <div class="col">
+            {{ formObject.Address.label(
+        class="form-label") }}
+
+        {{ formObject.Address(
+        class="form-control") }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ formObject.City.label(
+        class="form-label") }}
+
+        {{ formObject.City(
+        class="form-control") }}
+        </div>
+        <div class="col">
+            {{ formObject.State.label(
+        class="form-label") }}
+
+        {{ formObject.State(
+        class="form-control") }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ formObject.Zip.label(
+        class="form-label") }}
+
+        {{ formObject.Zip(
+        class="form-control") }}
+        </div>
+    </div>
+    {{ formObject.submit.label(
+        class="form-label") }}
+
+        {{ formObject.submit(
+        class="form-control") }}
+
+</form>
+
+{% endblock %}
