@@ -1,4 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, session, render_template_string, request, redirect, url_for
+from flask_session import Session
+
 
 route_path = Blueprint('route_path', __name__)
 
@@ -78,6 +80,40 @@ def form_delete_post(address_id):
     db.session.delete(deleteObject)
     db.session.commit()
     return redirect("/", code=302)
+
+@route_path.route('/set_email', methods=['GET', 'POST'])
+def set_email():
+    if request.method == 'POST':
+        # Save the form data to the session object
+        session['email'] = request.form['email_address']
+        return redirect(url_for('route_path.get_email'))
+
+    return """
+        <form method="post">
+            <label for="email">Enter your email address:</label>
+            <input type="email" id="email" name="email_address" required />
+            <button type="submit">Submit</button
+        </form>
+        """
+
+
+@route_path.route('/get_email')
+def get_email():
+    return render_template_string("""
+            {% if session['email'] %}
+                <h1>Welcome {{ session['email'] }}!</h1>
+            {% else %}
+                <h1>Welcome! Please enter your email <a href="{{ url_for('route_path.set_email') }}">here.</a></h1>
+            {% endif %}
+        """)
+
+
+@route_path.route('/delete_email')
+def delete_email():
+    # Clear the email stored in the session object
+    session.pop('email', default=None)
+    return '<h1>Session deleted!</h1>'
+
 
 #Postman - all addresses
 # @route_path.route('/api/v1/addresses', methods=['GET'])
