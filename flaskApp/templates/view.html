@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="card" class="m-5 p-2">
+    <h5 class="card-title">{{ addresses.lName }}, {{ addresses.fName }}</h5>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">First Name: {{ addresses.fName }}</li>
+        <li class="list-group-item">Last Name: {{ addresses.lName }}</li>
+        <li class="list-group-item">Address: {{ addresses.Address }}</li>
+        <li class="list-group-item">City: {{ addresses.City }}</li>
+        <li class="list-group-item">State: {{ addresses.State }}</li>
+        <li class="list-group-item">Zip Code: {{ addresses.Zip }}</li>
+    </ul>
+    <div class="card-body">
+        <a href="/edit/{{addresses.id}}" class="card-link btn btn-primary">edit</a>
+    </div>
+</div>
+<form action="/delete/{{addresses.id}}" method="post"><button type="submit" class="btn btn-danger">Delete</button></form>
+
+
+{% endblock %}

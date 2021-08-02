@@ -1,0 +1,29 @@
+flaskApp->temps->index.html
+
+{% extends "layout.html" %}
+{% block content %}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">fName</th>
+        <th scope="col">lName</th>
+        <th scope="col">Address</th>
+        <th scope="col">State</th>
+        <th scope="col">City</th>
+        <th scope="col">Zip</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for city in addresses %}
+    <tr>
+        <td><a href="view/{{city.id}}">{{ city.fName }}</a></td>
+        <td>{{ city.lName }}</td>
+        <td>{{ city.Address }}</td>
+        <td>{{ city.City }}</td>
+        <td>{{ city.State }}</td>
+        <td>{{ city.Zip }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
