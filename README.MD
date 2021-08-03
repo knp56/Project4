@@ -11,7 +11,7 @@ email (user account) and creating a session when viewing the records.
 <img src="screenshots/login.png"></img>
 
 ### Session Created:
-(welcome.png)
+<img src="screenshots/welcome.png"></img>
 
 ### Home Page:
 * Once logged in (you see the Welcome page above) Insert http://192.168.1.154:5000/ in web browser
