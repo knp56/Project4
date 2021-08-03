@@ -7,8 +7,11 @@ with Flask SQLAlchemy with the capabilities of providing your own
 email (user account) and creating a session when viewing the records.
 
 ## Screenshots
+### The first web page that appears asking for you to sign in.
+<img src="screenshots/first.png"><img>
+
 ### Log in using an email:
-<img src="screenshots/login.png"></img>
+<img src="screenshots/loginpass.png"></img>
 
 ### Session Created:
 <img src="screenshots/welcome.png"></img>
