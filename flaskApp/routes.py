@@ -1,11 +1,23 @@
+from functools import wraps
+
 from flask import Blueprint, session, render_template_string, request, redirect, url_for
 from flask_session import Session
 
 
 route_path = Blueprint('route_path', __name__)
 
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if session.get('email') is None:
+            return redirect('/get_email',code=302)
+        return f(*args, **kwargs)
+    return decorated_function
+
 #view all records
 @route_path.route('/', methods=['GET'])
+@login_required
 def index():
     from models import address
     from flask import render_template
@@ -14,6 +26,7 @@ def index():
 
 #single record view
 @route_path.route('/view/<int:address_id>', methods=['GET'])
+@login_required
 def record_view(address_id):
     from models import address
     from flask import render_template
@@ -22,6 +35,7 @@ def record_view(address_id):
 
 #edit page
 @route_path.route('/edit/<int:address_id>', methods=['GET'])
+@login_required
 def form_edit_get(address_id):
     from models import address
     from flask import render_template
@@ -32,6 +46,7 @@ def form_edit_get(address_id):
 
 #address' being edited
 @route_path.route('/edit/<int:address_id>', methods=['POST'])
+@login_required
 def form_update_post(address_id):
     from models import address
     from flask import request, redirect
@@ -49,6 +64,7 @@ def form_update_post(address_id):
 
 #new address page
 @route_path.route('/address/new', methods=['GET'])
+@login_required
 def form_insert_get():
     from flask import render_template
     from forms import AddressForm
@@ -57,6 +73,7 @@ def form_insert_get():
 
 #process of inserting new address
 @route_path.route('/address/new', methods=['POST'])
+@login_required
 def form_insert_post():
     from models import address
     from flask import render_template
@@ -70,6 +87,7 @@ def form_insert_post():
 
 #process of deleting address
 @route_path.route('/delete/<int:address_id>', methods=['POST'])
+@login_required
 def form_delete_post(address_id):
     from flask import redirect
     from models import address
